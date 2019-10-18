@@ -8,7 +8,8 @@ class App extends Component {
       { name: 'Max', age: 28},
       { name: 'Manu', age: 26},
       { name: 'Prad', age: 30}
-    ]
+    ],
+    showPersons: false
   }
 
   switchNameHandler = (newName) => {
@@ -21,6 +22,12 @@ class App extends Component {
     })
   }
 
+  togglePersonsHandker = () => {
+    let doesShow = this.state.showPersons
+    this.setState({
+      showPersons: !doesShow
+    })
+  }
   nameChangeHandler = (event) => {
     this.setState({
       persons: [
@@ -44,18 +51,22 @@ class App extends Component {
         <p>This is working</p>
         <button 
           style={style}
-          onClick = {() => this.switchNameHandler('Maximillian!!!')}>Switch Name</button>
-        <Person 
-          name = {this.state.persons[0].name} 
-          age = {this.state.persons[0].age}/>
-        <Person 
-          click = {this.switchNameHandler.bind(this, 'Max!')}
-          changed = {this.nameChangeHandler}
-          name = {this.state.persons[1].name} 
-          age = {this.state.persons[1].age}> My Hoppies:  Racing</Person>
-        <Person 
-          name = {this.state.persons[2].name} 
-          age = {this.state.persons[2].age}/>
+          onClick = {this.togglePersonsHandker}>Toggle Persons</button>
+        { this.state.showPersons ?
+          <div>
+            <Person 
+              name = {this.state.persons[0].name} 
+              age = {this.state.persons[0].age}/>
+            <Person 
+              click = {this.switchNameHandler.bind(this, 'Max!')}
+              changed = {this.nameChangeHandler}
+              name = {this.state.persons[1].name} 
+              age = {this.state.persons[1].age}> My Hoppies:  Racing</Person>
+            <Person 
+              name = {this.state.persons[2].name} 
+              age = {this.state.persons[2].age}/>
+          </div> : null
+        }
       </div>
     );
     //return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Hi, I\'m a React App'))
