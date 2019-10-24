@@ -52,16 +52,8 @@ class App extends Component {
   }
 
   render() {
-    const style = {
-      backgroundColor: "green",
-      color: "white",
-      font: "inherit",
-      border: "1px solid blue",
-      padding: "8px",
-      cursor: "pointer"
-    }
-
     let persons = null
+    let btnClass = ''
 
     if (this.state.showPersons) {
       persons = (
@@ -74,7 +66,7 @@ class App extends Component {
           changed = {(event) => this.nameChangeHandler(event, person.id)}/>
         })
       )
-      style.backgroundColor = "red"
+      btnClass = classses.Red
     }
     const fontStyles = []
 
@@ -89,8 +81,7 @@ class App extends Component {
       <div className={classses.App}>
         <h1>Hi, I'm a React App</h1>
         <p className={fontStyles.join(' ')}>This is working</p>
-        <button 
-          style={style}
+        <button className={btnClass}
           onClick = {this.togglePersonsHandker}>Toggle Persons</button>
         {persons}
       </div>
