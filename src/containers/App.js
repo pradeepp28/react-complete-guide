@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classses from './App.module.css';
-import Person from './Person/Person'
+import Persons from '../components/Persons/Persons'
+import Cockpit from '../components/Cockpit/Cockpit'
 
 class App extends Component {
   state = {
@@ -53,36 +54,16 @@ class App extends Component {
 
   render() {
     let persons = null
-    let btnClass = ''
-
+    
     if (this.state.showPersons) {
       persons = (
-        this.state.persons.map( (person, index) => {
-          return <Person 
-          click = {() => this.deletePersonHandler(index)}
-          name = {person.name} 
-          age = {person.age}
-          key = {person.id}
-          changed = {(event) => this.nameChangeHandler(event, person.id)}/>
-        })
+        <Persons persons={this.state.persons} clicked={this.deletePersonHandler} changed={this.nameChangeHandler}/>
       )
-      btnClass = classses.Red
     }
-    const fontStyles = []
-
-    if (this.state.persons.length <= 2) {
-      fontStyles.push(classses.red)
-    }
-
-    if (this.state.persons.length <= 1) {
-      fontStyles.push(classses.bold)
-    }
+    
     return (
-      <div className={classses.App}>
-        <h1>Hi, I'm a React App</h1>
-        <p className={fontStyles.join(' ')}>This is working</p>
-        <button className={btnClass}
-          onClick = {this.togglePersonsHandker}>Toggle Persons</button>
+      <div> className={classses.App}>
+        <Cockpit persons={this.state.persons} showPersons={this.state.showPersons} clicked={this.togglePersonsHandker}/>
         {persons}
       </div>
     );
