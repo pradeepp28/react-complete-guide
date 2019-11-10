@@ -4,7 +4,7 @@ import classes from "./Person.module.css";
 
 class Person extends Component {
   render() {
-    console.log("[Persons.js] rendering ...");
+    console.log("[Person.js] rendering ...");
     return (
       <div className={classes.Person}>
         <p onClick={this.props.click}>

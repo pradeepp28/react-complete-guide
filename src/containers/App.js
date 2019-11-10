@@ -33,6 +33,17 @@ class App extends Component {
     console.log("[App.js] componentDidMount");
   }
 
+  // update lifecycle
+  shouldComponentUpdate(prevProps, prevState) {
+    console.log("[App.js] shouldComponentUpdate");
+    return true;
+  }
+
+  // update lifecycle
+  componentDidUpdate() {
+    console.log("[App.js] componentDidUpdate");
+  }
+
   togglePersonsHandker = () => {
     let doesShow = this.state.showPersons;
     this.setState({
