@@ -19,7 +19,7 @@ class App extends Component {
 
   // create lifecycle #2
   static getDerivedStateFromProps(props, state) {
-    console.log("[App.js] getDerivedStateFromProps");
+    console.log("[App.js] getDerivedStateFromProps", props);
     return state;
   }
 
@@ -91,6 +91,7 @@ class App extends Component {
     return (
       <div>
         <Cockpit
+          title={this.props.appTitle}
           persons={this.state.persons}
           showPersons={this.state.showPersons}
           clicked={this.togglePersonsHandker}
