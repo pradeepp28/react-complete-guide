@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Persons from "../components/Persons/Persons";
 import Cockpit from "../components/Cockpit/Cockpit";
+import classes from "./App.module.css";
 
 class App extends Component {
   // create lifecycle #1
@@ -14,7 +15,8 @@ class App extends Component {
       { id: "abc2", name: "Manu", age: 26 },
       { id: "abc3", name: "Prad", age: 30 }
     ],
-    showPersons: false
+    showPersons: false,
+    showCockpit: true
   };
 
   // create lifecycle #2
@@ -42,6 +44,10 @@ class App extends Component {
   // update lifecycle
   componentDidUpdate() {
     console.log("[App.js] componentDidUpdate");
+  }
+
+  componentWillUnmount() {
+    console.log("[App.js] componentWillUnmount");
   }
 
   togglePersonsHandker = () => {
@@ -100,13 +106,18 @@ class App extends Component {
     }
 
     return (
-      <div>
-        <Cockpit
-          title={this.props.appTitle}
-          persons={this.state.persons}
-          showPersons={this.state.showPersons}
-          clicked={this.togglePersonsHandker}
-        />
+      <div className={classes.App}>
+        <button onClick={() => this.setState({ showCockpit: false })}>
+          Remove Cockpit
+        </button>
+        {this.state.showCockpit ? (
+          <Cockpit
+            title={this.props.appTitle}
+            persons={this.state.persons}
+            showPersons={this.state.showPersons}
+            clicked={this.togglePersonsHandker}
+          />
+        ) : null}
         {persons}
       </div>
     );
