@@ -13,9 +13,12 @@ const Cockpit = props => {
     };
   }, []);
 
-  // useEffect(() => {
-  //   console.log("[Cockpit.js] useEffect");
-  // });
+  useEffect(() => {
+    console.log("[Cockpit.js] 2nd useEffect");
+    return () => {
+      console.log("[Cockpit.js] cleanup in 2nd useEffect");
+    };
+  });
 
   let btnClass = "";
 
@@ -25,11 +28,11 @@ const Cockpit = props => {
 
   const fontStyles = [];
 
-  if (props.persons.length <= 2) {
+  if (props.personsLength <= 2) {
     fontStyles.push(classses.red);
   }
 
-  if (props.persons.length <= 1) {
+  if (props.personsLength <= 1) {
     fontStyles.push(classses.bold);
   }
   return (
@@ -43,4 +46,4 @@ const Cockpit = props => {
   );
 };
 
-export default Cockpit;
+export default React.memo(Cockpit);

@@ -11,7 +11,10 @@ class Persons extends Component {
   // update lifecycle #2
   shouldComponentUpdate(nextProps, nextState) {
     console.log("[Persons.js] shouldComponentUpdate");
-    return true;
+    if (nextProps.persons !== this.props.persons) {
+      return true;
+    }
+    return false;
   }
 
   // update lifecycle #4
